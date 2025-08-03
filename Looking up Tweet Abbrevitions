@@ -16,3 +16,10 @@ for abbr, meaning in abbr_dict.items():
         found = True
 if not found:
     print("No known abbreviations found in the tweet.")
+#Example input: How are you irl? ICYMI S/O to my girl DANA se puts out that nsfw content. BFN.
+#Example Output: Enter a tweet (up to 160 characters):
+#BFN = bye for now
+#IRL = in real life
+#ICYMI = in case you missed it
+#NSFW = not safe for work, which means inappropriate content
+#S/O = shout out
