@@ -1,0 +1,18 @@
+abbr_dict = {
+    'LOL': 'laughing out loud',
+    'BFN': 'bye for now',
+    'FTW': 'for the win',
+    'IRL': 'in real life',
+    'ICYMI': 'in case you missed it',
+    'NSFW': 'not safe for work, which means inappropriate content',
+    'S/O': 'shout out',
+    'BRB': 'be right back'
+}
+tweet = input("Enter a tweet (up to 160 characters):\n").upper()
+found = False
+for abbr, meaning in abbr_dict.items():
+    if abbr in tweet:
+        print(f"{abbr} = {meaning}")
+        found = True
+if not found:
+    print("No known abbreviations found in the tweet.")
