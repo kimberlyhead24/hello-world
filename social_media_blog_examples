@@ -1,0 +1,20 @@
+posts = [
+    {"user": "Alice", "content": "Composted today!", "likes": 18},
+    {"user": "Bob", "content": "Planted native trees.", "likes": 24}
+]
+
+
+for post in posts:
+    print(f"{post['user']} posted: {post['content']}")
+
+i = 0
+while i < len(posts):
+    if posts[i].get("flagged", False):
+        print("Needs Moderation:", posts[i])
+        break
+    i += 1
+
+
+blog_articles = ["How to live zero waste", "Solar panels 101", "Rainwater harvesting tips"]
+for idx, article in enumerate(blog_articles):
+    print(f"Article {idx+1}: {article}")
