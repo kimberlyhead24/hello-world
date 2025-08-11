@@ -1,0 +1,10 @@
+contingency_actions = ["Store rainwater", "Plant drought-resistant crops", "Install solar panels"]
+for step in contingency_actions:
+    print("Step:", step)
+
+action_status = {"Store rainwater": False, "Plant crops": True}
+print(action_status["Plant crops"])  # True means complete
+
+mvp_actions = [("Bike commute", 4.2), ("Install LED bulbs", 1.1)]  # (action, tons/year)
+for action, savings in mvp_actions:
+    print(f"{action}: saves {savings} tons CO₂/year")
