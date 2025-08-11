@@ -1,0 +1,7 @@
+# Ingredients for a recipe (for 1 serving)
+ingredients = ["flour", "sugar", "eggs"]
+quantities = {"flour": 100, "sugar": 50, "eggs": 1}  # grams / count
+
+# Convert for 4 servings using a for loop
+for item in ingredients:
+    print(f"{item}: {quantities[item] * 4}")
