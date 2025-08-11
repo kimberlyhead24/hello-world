@@ -1,0 +1,17 @@
+news_articles = [
+    {"title": "Climate Policy Advances", "source": "Gov Data", "url": "..."},
+    {"title": "New Solar Tech", "source": "TechCrunch", "url": "..."}
+]
+
+for article in news_articles:
+    print(f"{article['title']} ({article['source']})")
+
+
+articles_fetched = 0
+found = False
+while not found and articles_fetched < 10:
+    article = get_next_article()  # Example function
+    articles_fetched += 1
+    if "carbon capture" in article["title"].lower():
+        print("Found:", article)
+        found = True
