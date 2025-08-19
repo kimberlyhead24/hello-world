@@ -1,0 +1,37 @@
+size = 5
+
+def get_numbers(num):
+    numbers = []
+    user_input = input(f'Enter {num} integers:\n')
+
+    i = 0
+    for token in user_input.split():
+        number = int(token)     # Convert string input into integer
+        numbers.append(number)  # Add to numbers list
+
+        print(i, number)
+        i += 1
+
+    return numbers
+
+def print_all_numbers(numbers):
+    print(f'Numbers: {numbers}')
+
+def print_odd_numbers(numbers):
+    odd_numbers = []
+    for n in numbers:
+        if n % 2 != 0:
+            odd_numbers.append(n)
+    print(f'Odd numbers: {odd_numbers}')
+
+def print_negative_numbers(numbers):
+    negative_numbers = []
+    for n in numbers:
+        if n < 0:
+            negative_numbers.append(n)
+    print(f'Negative numbers: {negative_numbers}')
+
+nums = get_numbers(size)
+print_all_numbers(nums)
+print_odd_numbers(nums)
+print_negative_numbers(nums)
