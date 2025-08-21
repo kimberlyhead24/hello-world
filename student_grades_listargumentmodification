@@ -3,13 +3,17 @@ def add_grade(student_grades):
     name, grade = input(grade_prompt).split()
     student_grades[name] = grade
 
-def delete_name(student_grades, name):
+def delete_grades(student_grades):
+    print('Deleting grade.\n')
+    name = input(delete_prompt)
     if name in student_grades:
         del student_grades[name]
         
 def print_grades(student_grades):
-    return
-
+    print('Printing grades.\n')
+    for name, grade in student_grades.items():
+            print(f'{name} has a {grade}.')
+            
 student_grades = {}  # Create an empty dict
 grade_prompt = "Enter name and grade (Ex. 'Bob A+'):\n"
 delete_prompt = "Enter name to delete:\n"
@@ -24,14 +28,9 @@ while command != '4':  # Exit when user enters '4'
     if command == '1':
         add_grade(student_grades)
     elif command == '2':
-       print('Deleting grade.\n')
-       name = input(delete_prompt)
-       delete_name(student_grades, name)
+        delete_grades(student_grades)    
     elif command == '3':
         print_grades(student_grades)
-        print('Printing grades.\n')
-        for name, grade in student_grades.items():
-            print(f'{name} has a {grade}.')
     else:
         print('Unrecognized command.\n')
 
