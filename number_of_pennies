@@ -1,0 +1,5 @@
+def number_of_pennies(dollars, pennies=0):
+    total_pennies = dollars * 100 + pennies
+    return total_pennies
+print(number_of_pennies(int(input()), int(input()))) # Both dollars and pennies
+print(number_of_pennies(int(input()))) 
