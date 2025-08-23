@@ -1,0 +1,13 @@
+def driving_cost(miles_per_gallon, dollars_per_gallon, miles_driven):
+    gallons = float(miles_driven) / float(miles_per_gallon)
+    cost = float(gallons) * float(dollars_per_gallon)
+    return cost
+
+if __name__ == '__main__':
+    miles_per_gallon = float(input())
+    dollars_per_gallon = float(input())
+    distances = [10, 50, 400]
+
+    for miles_driven in distances:
+        total = driving_cost(miles_per_gallon, dollars_per_gallon, miles_driven)
+        print(f'{total:.2f}')
