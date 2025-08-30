@@ -1,0 +1,6 @@
+user_input = input()
+short_names = user_input.split()
+
+short_names.sort(reverse=True)
+
+print(short_names)
