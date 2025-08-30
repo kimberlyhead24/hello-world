@@ -6,12 +6,14 @@ num_vips = 0  # Track number of VIPs at front of line
 menu = ('(1) Reserve place in line.\n'  # Add rider to line
         '(2) Reserve place in VIP line.\n'  # Add VIP
         '(3) Dispatch riders.\n'  # Dispatch next ride car
-        '(4) Print riders.\n'
-        '(5) Exit.\n\n')
+        '(4) Print riders.\n' 
+        '(5) Find place in line.\n'  # Find the current place in line
+        '(6) Remove name.\n' #Enter a name to remove rider from line
+        '(7) Exit.\n\n')
 
 user_input = input(menu).strip().lower()
 
-while user_input != '5':
+while user_input != '7':
     if user_input == '1':  # Add rider 
         name = input('Enter name:').strip().lower()
         print(name)
@@ -36,6 +38,25 @@ while user_input != '5':
 
     elif user_input == '4':  # Print riders waiting in line
         print(f'{len(line)} person(s) waiting: {line}')
+        
+    elif user_input == '5':
+        name = input('Enter name:').strip().lower()
+        print(name)
+        if name in line:
+            current_place = line.index(name) + 1
+            print(f'The current position of {name} is: {current_place}')
+        else:
+            print(f'Rider {name} not found.')
+
+    elif user_input == '6': 
+        name = input('Enter name:').strip().lower()
+        print(name)
+        if name in line:
+            line.remove(name)
+            print(f'Removed Rider {name}')
+        else:
+            print(f'Rider {name} not found')
+        # The rider can enter a name to remove the rider from the line.
 
     else:
         print('Unknown menu option')
