@@ -1,0 +1,93 @@
+def read_customer_data(filename):
+    """Read and return data from filename as a list of lists (name, state, debt)"""
+    names = []
+    states = []
+    debts = []
+
+    with open(filename) as f:
+        rows = f.readlines()
+    for row in rows:
+        row = row.split(',')
+        names.append(row[0])
+        states.append(row[1])
+        debts.append(float(row[2].strip()))
+    return names, states, debts
+
+# Main portion of the program
+if __name__ == '__main__':
+    # number of rows to consider
+    num_customers = int(input())
+
+    names, states, debts = read_customer_data("CustomerData.csv")
+
+    names = names[:num_customers]
+    states = states[:num_customers]
+    debts = debts[:num_customers]
+    
+    debt_limit = int(input())
+    search_phrase = input()
+    state_abbrev = input()
+    
+    max_debt_index = 0
+    for i in range(len(debts)):
+        if debts[i] > debts[max_debt_index]:
+            max_debt_index = i
+    highest_debt_name = names[max_debt_index]
+    
+    print('U.S. Report')
+    print(f'Customers: {num_customers}')
+    print(f'Highest debt: {highest_debt_name}')
+    
+    count = 0
+    for name in names:
+        if name.startswith(search_phrase):
+            count += 1
+    print (f'Customer names that start with "{search_phrase}": {count}')
+    
+    count_over_limit = 0
+    count_debt_free = 0
+    for debt in debts:
+        if debt > debt_limit:
+            count_over_limit += 1
+        if debt == 0:
+            count_debt_free += 1
+
+
+    print(f'Customers with debt over ${debt_limit}: {count_over_limit}')
+    print(f'Customers debt free: {count_debt_free}')
+    
+    state_names = []
+    state_debts = []
+
+    for i in range(len(states)):
+        if states[i].strip().upper() == state_abbrev.upper():
+            state_names.append(names[i])
+            state_debts.append(debts[i])
+
+
+    if not state_names:
+        print(f"{state_abbrev} Report")
+        print("Customers: 0")
+        print("Highest debt: None")
+        print(f'Customer names that start with "{search_phrase}": 0')
+        print(f'Customers with debt over ${debt_limit}: 0')
+        print('Customers debt free: 0')
+    else:
+    
+        max_debt_idx = 0
+        for i in range(len(state_debts)):
+            if state_debts[i] > state_debts[max_debt_idx]:
+                max_debt_idx = i
+        highest_debt_name = state_names[max_debt_idx]
+
+        count_state_names = sum(1 for name in state_names if name.startswith(search_phrase))
+        count_over_limit = sum(1 for debt in state_debts if debt > debt_limit)
+        count_debt_free = sum(1 for debt in state_debts if debt == 0)
+
+        print()
+        print(f"{state_abbrev} Report")
+        print(f"Customers: {len(state_names)}")
+        print(f"Highest debt: {highest_debt_name}")
+        print(f'Customer names that start with "{search_phrase}": {count_state_names}')
+        print(f'Customers with debt over ${debt_limit}: {count_over_limit}')
+        print(f'Customers debt free: {count_debt_free}')
