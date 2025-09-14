@@ -1,0 +1,26 @@
+class Quarterback:
+    def __init__(self, yds, tds, cmps, atts, ints, wins):
+        self.wins = wins
+        self.rating = (((8.4 * yds) + (330 * tds) + (100 * cmps) - (200 * ints)) / atts)
+        
+    def __lt__(self, other):
+        if (self.wins < other.wins) or (self.rating < other.rating):
+            return True
+        return False
+    def __gt__(self, other):
+        if (self.wins > other.wins) and (self.rating > other.rating):
+            return True
+        return False
+
+peyton = Quarterback(yds=4700, tds=33, cmps=450, atts=679, ints=17, wins=10)
+eli = Quarterback(yds=4002, tds=31, cmps=339, atts=539, ints=25, wins=9)
+
+
+if peyton > eli:
+    print('Peyton is the better QB!')
+elif eli > peyton:
+    print('Eli is the better QB!')
+else:
+    print('It is not clear who the better QB is...')
+
+    
