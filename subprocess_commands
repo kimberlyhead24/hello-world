@@ -1,0 +1,60 @@
+import subprocess
+# Import the subprocess module so we can run external system commands
+
+subprocess.run(["date"])
+# Run the shell command `date` and wait for it to finish
+# This prints the current date/time to the terminal
+
+subprocess.run(["sleep", "2"])
+# Run `sleep 2`, which pauses for 2 seconds before returning
+
+subprocess.run(["date"])
+# Print the current date/time again (so you can see the delay caused by sleep)
+ 
+result = subprocess.run(["ls", "this_file_does_not_exist"])
+# Try to list a file that does not exist; this will cause `ls` to fail
+# The return code will be non‑zero to indicate an error
+
+print(result.returncode)
+# Print the exit status of the `ls` command which comes back 1
+
+result = subprocess.run(["host", "8.8.8.8"], capture_output=True)
+# Run `host 8.8.8.8` to do a DNS lookup of the IP address
+# capture_output=True tells subprocess to store stdout and stderr instead of printing them
+
+print(result.returncode)
+# Print the exit status of the `host` command
+
+print(result.stdout)
+# Print the raw bytes that came from standard output of the command
+
+print(result.stdout.decode().split())
+# Decode the byte output to a string using default encoding (UTF‑8)
+# Then split the string into a list of words and print that list
+
+
+result = subprocess.run(["rm", "does_not_exist"], capture_output=True)
+# Try to remove a file that does not exist; `rm` will fail and write an error message
+# Output and errors are captured in result.stdout and result.stderr
+
+print(result.returncode)
+# Print the exit status of the rm command (non‑zero on error)
+
+
+print(result.stdout)
+# Print whatever was captured on standard output (this will come up empty for rm errors)
+
+print(result.stderr)
+# Print the error message from standard error (e.g., “No such file or directory”)
+
+import os
+my_env = os.environ.copy()
+# Make a copy of the current process's environment variables (a dict-like object)
+
+my_env["PATH"] = os.pathsep.join(["/opt/myapp/", my_env["PATH"]])
+# Take the existing PATH and prepend "/opt/myapp/" to it
+# This means when commands are run, the system will look in /opt/myapp/ first for executables
+
+result = subprocess.run(["myapp"], env=my_env)
+# Run the command "myapp" using the modified environment (with the new PATH)
+# Because PATH now includes /opt/myapp/, Python can find the myapp executable there without a full path
